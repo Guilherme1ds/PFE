@@ -7,11 +7,19 @@
 </head>
 <body>
     <h1>Conversor de Temperatura Dinâmico</h1>
+    <div>
     <input type="number" id="celsiusInput" placeholder = "Digite a temperatura em Celsius">
-    <button onclick="converter()">Converter para Farenheit</button>
+    <button onclick="converter()">Converter para Farenheit e Kelvin</button>
+    </div>
+
     <style>
         body {
             transition: background-color 0.5s ease;
+        }
+
+        div {
+            margin-top: 20px;
+            text-align: center;
         }
     </style>
     <script src="rev1.js"></script>

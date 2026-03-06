@@ -1,0 +1,160 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #fff;
+    display: flex;
+}
+
+.menu_lateral {
+    width: 245px;
+    height: 100vh;
+    border-right: 1px solid #dbdbdb;
+    padding: 20px 12px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background: #fff;
+    transition: width 0.3s ease;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.menu_lateral .logo {
+    padding: 25px 12px;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.links_menu {
+    flex-grow: 1;
+}
+
+.links_menu a, .menu_mais {
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    margin: 4px 0;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.links_menu a:hover {
+    background-color: #f2f2f2;
+}
+
+.main_container {
+    margin-left: 245px; 
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 20px 0;
+}
+
+.feed {
+    max-width: 470px;
+    width: 100%;
+}
+
+/* Estilo dos Stories */
+.stories {
+    display: flex;
+    gap: 15px;
+    padding: 20px 0;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.stories::-webkit-scrollbar {
+    display: none; 
+}
+
+.story {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 70px;
+    text-align: center;
+}
+
+.story img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #dbdbdb;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.story span {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #333;
+}
+
+.post {
+    border-bottom: 1px solid #dbdbdb; 
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.post_header {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    gap: 10px;
+}
+
+.post_header img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #dbdbdb;
+    object-fit: cover;
+}
+
+.post_content img, .post_content video {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+}
+
+.post_footer {
+    padding: 10px 0;
+}
+
+.post_actions {
+    font-size: 24px;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.post_actions i { cursor: pointer; }
+
+.post_info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+@media (max-width: 1200px) {
+    .menu_lateral {
+        width: 72px;
+    }
+    
+    .menu_lateral span, .menu_lateral .logo span {
+        display: none; 
+    }
+    
+    .main_container {
+        margin-left: 72px;
+    }
+
+    .links_menu a {
+        justify-content: center;
+    }
+}

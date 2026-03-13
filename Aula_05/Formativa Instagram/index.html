@@ -6,6 +6,7 @@
     <title>Instagram Reprodução</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="shortcut icon" href="/Aula_05/Formativa Instagram/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <nav class="menu_lateral">
@@ -29,15 +30,15 @@
     <main class="main_container">
         <section class="feed">
             <section class="stories">
-                <div class="story">
+                <div class="story" data-video="https://www.pexels.com/pt-br/download/video/31777869/">
                     <img src="/Aula_05/Formativa Instagram/imagens/calopsita-2.jpg" alt="Story">
                     <span>Gustavo</span>
                 </div>
-                <div class="story">
+                <div class="story" data-video="https://www.pexels.com/pt-br/download/video/36505128/">
                     <img src="/Aula_05/Formativa Instagram/imagens/jefferson.jpg" alt="Story">
                     <span>Jeff</span>
                 </div>
-                <div class="story">
+                <div class="story" data-video="https://www.pexels.com/pt-br/download/video/36443772/">
                     <img src="/Aula_05/Formativa Instagram/imagens/arthur.jpg" alt="Story">
                     <span>Arthur</span>
                 </div>
@@ -48,7 +49,7 @@
                     <span class="username">Gustavo</span>
                 </header>
                 <div class="post_content">
-                    <video src="https://www.w3schools.com/html/mov_bbb.mp4" loop muted controls></video> 
+                    <video src="https://www.pexels.com/pt-br/download/video/6533277/" loop muted controls></video> 
                 </div>
                 <footer class="post_footer">
                     <div class="post_actions">
@@ -58,6 +59,11 @@
                     </div>
                     <p class="likes"><strong>1.250 curtidas</strong></p>
                     <p class="caption"><strong>gus_fring</strong> Video bacana #memes</p>
+                    <div class="comments" style="display: none;">
+                        <div class="comment-list"></div>
+                        <textarea placeholder="Adicione um comentário..."></textarea>
+                        <button class="comment-btn">Publicar</button>
+                    </div>
                 </footer>
             </article>
 
@@ -67,7 +73,18 @@
                     <span class="username">Jeff</span>
                 </header>
                 <div class="post_content">
-                    <img src="/Aula_05/Formativa Instagram/imagens/pexels-rinoadamo-34586077.jpg" alt="Post">
+                    <button class="carousel-btn prev-btn">&lt;</button>
+                    <div class="carousel">
+                        <img src="/Aula_05/Formativa Instagram/imagens/pexels-rinoadamo-34586077.jpg" alt="Post 1" class="carousel-image active">
+                        <img src="/Aula_05/Formativa Instagram/imagens/racionais.jpg" alt="Post 2" class="carousel-image">
+                        <img src="/Aula_05/Formativa Instagram/imagens/denisbandas.jpg" alt="Post 3" class="carousel-image">
+                    </div>
+                    <button class="carousel-btn next-btn">&gt;</button>
+                    <div class="carousel-dots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                    </div>
                 </div>
                 <footer class="post_footer">
                     <div class="post_actions">
@@ -77,6 +94,11 @@
                     </div>
                     <p class="likes"><strong>856 curtidas</strong></p>
                     <p class="caption"><strong>jefferson__</strong> A paz presente no ambiente. </p>
+                    <div class="comments" style="display: none;">
+                        <div class="comment-list"></div>
+                        <textarea placeholder="Adicione um comentário..."></textarea>
+                        <button class="comment-btn">Publicar</button>
+                    </div>
                 </footer>
             </article>
 
@@ -96,9 +118,135 @@
                     </div>
                     <p class="likes"><strong>3.420 curtidas</strong></p>
                     <p class="caption"><strong>michael_morgan</strong> vida deserta!!!!!!!!!!!!!!!!!!!!!!!!!!...</p>
+                    <div class="comments" style="display: none;">
+                        <div class="comment-list"></div>
+                        <textarea placeholder="Adicione um comentário..."></textarea>
+                        <button class="comment-btn">Publicar</button>
+                    </div>
                 </footer>
             </article>
         </section>
     </main>
+
+    <div class="story-modal" style="display: none;">
+        <div class="story-modal__backdrop"></div>
+        <div class="story-modal__content">
+            <button class="story-modal__close" aria-label="Fechar">×</button>
+            <video class="story-modal__video" controls></video>
+        </div>
+    </div>
+
+    <script>
+        const carousel = document.querySelector('.carousel');
+        const images = carousel.querySelectorAll('img');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            images.forEach((img, index) => {
+                img.classList.remove('active');
+                if (index === currentIndex) {
+                    img.classList.add('active');
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+
+        dots.forEach((dot) => {
+            dot.addEventListener('click', () => {
+                currentIndex = parseInt(dot.getAttribute('data-index'));
+                updateCarousel();
+            });
+        });
+    </script>
+    <script>
+        const hearts = document.querySelectorAll('.fa-heart');
+        hearts.forEach(heart => {
+            heart.addEventListener('click', () => {
+                heart.classList.toggle('liked');
+                if (heart.classList.contains('liked')) {
+                    heart.classList.remove('fa-regular');
+                    heart.classList.add('fa-solid');
+                } else {
+                    heart.classList.remove('fa-solid');
+                    heart.classList.add('fa-regular');
+                }
+            });
+        });
+    </script>
+    <script>
+        const commentIcons = document.querySelectorAll('.fa-comment');
+        commentIcons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                const postFooter = icon.closest('.post_footer');
+                const commentsDiv = postFooter.querySelector('.comments');
+                const isVisible = commentsDiv.style.display !== 'none';
+                commentsDiv.style.display = isVisible ? 'none' : 'block';
+                icon.classList.toggle('active', !isVisible);
+            });
+        });
+
+        const commentBtns = document.querySelectorAll('.comment-btn');
+        commentBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const commentsDiv = btn.closest('.comments');
+                const textarea = commentsDiv.querySelector('textarea');
+                const commentList = commentsDiv.querySelector('.comment-list');
+                if (textarea.value.trim() !== '') {
+                    const newComment = document.createElement('p');
+                    newComment.innerHTML = '<strong>Você:</strong> ' + textarea.value;
+                    commentList.appendChild(newComment);
+                    textarea.value = '';
+                }
+            });
+        });
+
+        const storyModal = document.querySelector('.story-modal');
+        const storyModalVideo = storyModal.querySelector('.story-modal__video');
+        const storyModalClose = storyModal.querySelector('.story-modal__close');
+        const storyBackdrop = storyModal.querySelector('.story-modal__backdrop');
+
+        document.querySelectorAll('.story').forEach(story => {
+            story.addEventListener('click', () => {
+                const videoSrc = story.getAttribute('data-video');
+                if (!videoSrc) return;
+                storyModalVideo.src = videoSrc;
+                storyModal.style.display = 'flex';
+                storyModalVideo.play();
+            });
+        });
+
+        const closeModal = () => {
+            storyModal.style.display = 'none';
+            storyModalVideo.pause();
+            storyModalVideo.currentTime = 0;
+            storyModalVideo.src = '';
+        };
+
+        document.addEventListener('click', (event) => {
+            const target = event.target;
+            if (target.closest('.story-modal__close') || target.closest('.story-modal__backdrop')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>

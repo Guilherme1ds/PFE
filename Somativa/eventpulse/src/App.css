@@ -147,6 +147,29 @@ box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 transform: translateY(0);
 }
 
+/* Modo de Edição - Tamanho Maior */
+.form-section form.editing {
+gap: 12px;
+padding: 20px;
+}
+
+.form-section form.editing input {
+flex: 3;
+padding: 12px;
+font-size: 1rem;
+}
+
+.form-section form.editing select {
+flex: 1;
+padding: 12px;
+font-size: 1rem;
+}
+
+.form-section form.editing button {
+padding: 12px 24px;
+font-size: 1rem;
+}
+
 .filter-section {
 display: flex;
 justify-content: center;
@@ -249,18 +272,20 @@ margin-top: 8px;
 margin-top: 18px;
 display: flex;
 justify-content: space-between;
-gap: 8px;
+gap: 6px;
+flex-wrap: wrap;
 }
 
 .event-actions button {
-flex: 1;
-padding: 10px;
-font-size: 0.85rem;
+min-width: 65px;
+padding: 8px 6px;
+font-size: 0.8rem;
 border: 1px solid #d1d5db;
 border-radius: 6px;
 cursor: pointer;
 font-weight: 500;
 transition: all 0.2s;
+white-space: nowrap;
 }
 
 .event-actions button.status-btn {

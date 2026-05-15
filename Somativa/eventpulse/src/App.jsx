@@ -82,7 +82,13 @@ return evt;
 };
 
 const deleteEvent = (id) => {
-setEventList(eventList.filter(evt => evt.id !== id));
+const confirmed = window.confirm(
+  "Tem certeza que deseja remover este evento? Esta ação não pode ser desfeita!"
+);
+
+if (confirmed) {
+  setEventList(eventList.filter(evt => evt.id !== id));
+}
 };
 
 const inscreverAluno = (id) => {
@@ -131,7 +137,7 @@ return (
 </header>
 
 <section className="form-section">
-<form onSubmit={addEvent}>
+<form onSubmit={addEvent} className={editingId ? "editing" : ""}>
 <input
 value={eventTitle}
 onChange={(e) => setEventTitle(e.target.value)}
@@ -231,18 +237,18 @@ Remover
             
             <div className="modal-changes">
               <div className="change-item">
-                <h3>Alteração 1: Gradiente de Fundo</h3>
-                <p>Background com gradiente vibrante de azul para roxo, criando uma atmosfera moderna e atrativa em todo o aplicativo.</p>
+                <h3>Paleta de Cores Escolhida</h3>
+                <p>Escolha da cor azul/roxo (#667eea) para o título do header e elementos principais como botões, filtros ativos e destaques, criando uma identidade visual coerente e profissional em todo o aplicativo.</p>
+              </div>
+                    
+              <div className="change-item">
+                <h3>Cards com Efeito Hover</h3>
+                <p>Cards ganham interatividade visual ao passar o mouse com transformação suave e sombra elevada, criando profundidade e feedback visual.</p>
               </div>
               
               <div className="change-item">
-                <h3>Alteração 2: Cards com Efeito 3D</h3>
-                <p>Cards ganham efeito de elevação ao passar o mouse (transform + shadow), criando interatividade visual e profundidade.</p>
-              </div>
-              
-              <div className="change-item">
-                <h3>Alteração 3: Header Gradiente Premium</h3>
-                <p>Header com gradiente linear de cores vibrantes, fonte maior e elegante, transformando o topo em ponto focal do design.</p>
+                <h3>Botões Otimizados e Confirmações</h3>
+                <p>Botões redimensionados para caber perfeitamente nos cards. Adicionado aviso de confirmação ao remover eventos para evitar exclusões acidentais.</p>
               </div>
 
               <div className="change-item">

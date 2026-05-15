@@ -248,7 +248,7 @@ Remover
               
               <div className="change-item">
                 <h3>Botões Otimizados e Confirmações</h3>
-                <p>Botões redimensionados para caber perfeitamente nos cards. Adicionado aviso de confirmação ao remover eventos para evitar exclusões acidentais.</p>
+                <p>Botões redimensionados para caber perfeitamente nos cards. Adicionado aviso de confirmação ao remover eventos para evitar exclusões por acidente.</p>
               </div>
 
               <div className="change-item">
